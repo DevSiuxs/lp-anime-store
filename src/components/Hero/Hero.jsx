@@ -19,33 +19,57 @@ export default function Hero() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Simulación de offsets parecidos a los cortes verticales de la imagen
-  const offsets = [0.1, 0, 0.2, 0.05, 0.15, 0.25];
+  const columnsConfig = [
+    { offset: 0.15, maxHeight: 50, alignSelf: 'center' },
+    { offset: 0.0, maxHeight: 85, alignSelf: 'flex-start' },
+    { offset: 0.2, maxHeight: 70, alignSelf: 'flex-end' },
+    { offset: 0.05, maxHeight: 95, alignSelf: 'center' },
+    { offset: 0.1, maxHeight: 80, alignSelf: 'flex-end' },
+    { offset: 0.25, maxHeight: 60, alignSelf: 'center' },
+  ];
+
+  const totalCols = columnsConfig.length;
+  const bgImageUrl = 'Hero.jpg'; // Ruta de tu imagen grande[cite: 7]
 
   return (
     <section id="hero-section" className="hero-container">
       <div className="hero-sticky">
         <div className="hero-grid">
-          {offsets.map((offset, index) => {
-            const adjustedProgress = Math.min(Math.max((scrollProgress - offset) / (1 - offset), 0), 1);
+          {columnsConfig.map((col, index) => {
+            const adjustedProgress = Math.min(
+              Math.max((scrollProgress - col.offset) / (1 - col.offset), 0),
+              1
+            );
+
+            const currentHeight = adjustedProgress * col.maxHeight;
+
+            // Calculamos la posición del background para cada columna exactamente entre 0% y 100%
+            const bgPositionX = (index / (totalCols - 1)) * 100;
+
             return (
-              <div key={index} className="hero-column-wrapper">
+              <div
+                key={index}
+                className="hero-column-wrapper"
+                style={{ alignSelf: col.alignSelf }}
+              >
                 <div
                   className="hero-column"
-                  style={{ height: `${adjustedProgress * 100}%` }}
-                >
-                  <img
-                    src="https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=1200&auto=format&fit=crop"
-                    alt="Anime Cover"
-                    className="hero-bg-img"
-                  />
-                </div>
+                  style={{
+                    height: `${currentHeight}%`,
+                    backgroundImage: `url(${bgImageUrl})`,
+                    backgroundPosition: `${bgPositionX}% center`
+                  }}
+                />
               </div>
             );
           })}
         </div>
-        <div className="hero-overlay" style={{ opacity: scrollProgress > 0.8 ? (scrollProgress - 0.8) * 5 : 0 }}>
-          <h1>AKIRA STORE</h1>
+
+        <div
+          className="hero-overlay"
+          style={{ opacity: scrollProgress > 0.85 ? (scrollProgress - 0.85) * 6.6 : 0 }}
+        >
+          <h1>TIENDA</h1>
           <p>Coleccionables & Merchandise Oficial</p>
         </div>
       </div>

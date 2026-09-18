@@ -1,5 +1,5 @@
 .hero-container {
-  height: 250vh; /* Permite hacer scroll para desplegar la animación */
+  height: 250vh;
   position: relative;
   background-color: var(--bg-color);
 }
@@ -19,9 +19,10 @@
   display: flex;
   width: 90%;
   max-width: 1100px;
-  height: 70vh;
-  gap: 12px;
+  height: 75vh;
+  gap: 16px;
   align-items: center;
+  position: relative;
 }
 
 .hero-column-wrapper {
@@ -32,23 +33,20 @@
   justify-content: center;
 }
 
+/*
+  EL CAMBIO CLAVE:
+  Manejamos la imagen como un background escalado al contenedor completo (.hero-grid).
+*/
 .hero-column {
   width: 100%;
-  border-radius: 16px;
+  border-radius: 20px;
   overflow: hidden;
   position: relative;
   transition: height 0.05s linear;
-}
 
-.hero-bg-img {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90vw;
-  max-width: 1100px;
-  height: 70vh;
-  object-fit: cover;
+  /* Ajustes de fondo */
+  background-repeat: no-repeat;
+  background-size: 1100px 75vh; /* Mismo tamaño fijo que .hero-grid */
 }
 
 .hero-overlay {
@@ -56,13 +54,14 @@
   text-align: center;
   z-index: 10;
   pointer-events: none;
+  transition: opacity 0.2s ease;
 }
 
 .hero-overlay h1 {
   font-size: 4rem;
   color: var(--accent-pink);
-  text-shadow: 0 0 15px rgba(255, 42, 109, 0.6);
-  letter-spacing: 4px;
+  text-shadow: 0 0 18px rgba(255, 42, 109, 0.7);
+  letter-spacing: 6px;
 }
 
 .hero-overlay p {
@@ -72,9 +71,16 @@
 
 @media (max-width: 768px) {
   .hero-grid {
-    gap: 6px;
+    gap: 8px;
+    height: 60vh;
   }
+
+  .hero-column {
+    border-radius: 10px;
+    background-size: 90vw 60vh; /* Ajuste responsive al tamaño del grid móvil */
+  }
+
   .hero-overlay h1 {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
   }
 }

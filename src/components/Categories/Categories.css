@@ -1,12 +1,13 @@
 .categories-section {
-  padding: 80px 20px;
+  padding: 180px 20px; /* Aumentamos el padding para dar un espacio amplio de scroll */
   max-width: 1200px;
   margin: 0 auto;
+  overflow: hidden;
 }
 
 .section-title {
   font-size: 2rem;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   color: var(--text-primary);
   border-left: 4px solid var(--accent-cyan);
   padding-left: 12px;
@@ -15,24 +16,28 @@
 .categories-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
+  gap: 24px;
 }
 
 .category-card {
   background-color: var(--card-bg);
-  height: 150px;
+  height: 160px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 12px;
+  border-radius: 16px;
   font-size: 1.3rem;
   font-weight: bold;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  transition: transform 0.3s, border-color 0.3s;
+  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  /* Suavizado en la respuesta de transform */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.1s ease-out;
+  will-change: transform, opacity;
   cursor: pointer;
 }
 
 .category-card:hover {
-  transform: translateY(-5px);
   border-color: var(--accent-pink);
+  box-shadow: 0 0 20px rgba(255, 42, 109, 0.4);
 }
