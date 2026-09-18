@@ -1,0 +1,25 @@
+.badges-section {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 40px 20px;
+  background-color: #121218;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.badge-item {
+  text-align: center;
+  flex: 1;
+  min-width: 200px;
+}
+
+.badge-item h4 {
+  color: var(--accent-cyan);
+  margin-bottom: 6px;
+}
+
+.badge-item p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}

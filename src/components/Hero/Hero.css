@@ -1,0 +1,80 @@
+.hero-container {
+  height: 250vh; /* Permite hacer scroll para desplegar la animación */
+  position: relative;
+  background-color: var(--bg-color);
+}
+
+.hero-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-grid {
+  display: flex;
+  width: 90%;
+  max-width: 1100px;
+  height: 70vh;
+  gap: 12px;
+  align-items: center;
+}
+
+.hero-column-wrapper {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-column {
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  transition: height 0.05s linear;
+}
+
+.hero-bg-img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90vw;
+  max-width: 1100px;
+  height: 70vh;
+  object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  text-align: center;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.hero-overlay h1 {
+  font-size: 4rem;
+  color: var(--accent-pink);
+  text-shadow: 0 0 15px rgba(255, 42, 109, 0.6);
+  letter-spacing: 4px;
+}
+
+.hero-overlay p {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+  .hero-grid {
+    gap: 6px;
+  }
+  .hero-overlay h1 {
+    font-size: 2.5rem;
+  }
+}
